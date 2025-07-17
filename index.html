@@ -66,6 +66,22 @@
       padding: 0 20px;
     }
 
+    .magic-button {
+      margin-top: 25px;
+      background-color: #4e0470;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .magic-button:hover {
+      background-color: #3a0357;
+    }
+
     .preview {
       margin-top: 30px;
     }
@@ -94,6 +110,7 @@
     <label for="imageInput">📁 Browse your image</label><br/>
     <input type="file" id="imageInput" accept="image/*"/>
     <div class="preview" id="preview"></div>
+    <button class="magic-button" onclick="openMagic()">✨ Magic Extend</button>
   </div>
 
   <p class="description">
@@ -118,6 +135,10 @@
         reader.readAsDataURL(file);
       }
     });
+
+    function openMagic() {
+      window.open("https://clipdrop.co/extend", "_blank");
+    }
   </script>
 </body>
 </html>
