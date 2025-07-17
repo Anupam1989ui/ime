@@ -1,98 +1,99 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>IME - Image Magic Extender</title>
   <style>
     body {
       margin: 0;
+      padding: 0;
+      background: linear-gradient(145deg, #000000, #4e0470);
+      color: white;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #000000, #4e0470);
-      color: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
       min-height: 100vh;
-      padding: 40px 20px;
-      box-sizing: border-box;
-      text-align: center;
     }
 
-    .logo {
-      font-style: italic;
-      font-weight: bold;
+    header {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 60px;
     }
 
-    .logo .ime {
-      font-size: 3.5rem;
-      color: #a020f0;
+    h1 {
+      font-size: 3em;
       font-weight: 900;
-      letter-spacing: 2px;
+      font-style: italic;
+      letter-spacing: 3px;
     }
 
-    .logo .fullform {
-      font-size: 1.2rem;
-      font-style: normal;
-      font-weight: 500;
-      color: #ffffff;
-      margin-top: 10px;
+    h2 {
+      font-weight: 400;
+      font-size: 1.2em;
+      margin-top: -10px;
     }
 
-    .upload-box {
-      margin: 60px auto 10px;
-      border: 3px dashed #a020f0;
+    .upload-section {
+      background: #111;
+      border: 2px dashed #4e0470;
       border-radius: 12px;
-      padding: 80px 60px;
-      width: 300px;
-      background-color: transparent;
-      color: #999;
-      font-weight: bold;
-      font-size: 1.2rem;
-      transition: background 0.3s, color 0.3s;
-      cursor: pointer;
+      padding: 40px;
+      margin-top: 40px;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+      transition: 0.3s ease;
     }
 
-    .upload-box:hover {
-      background-color: rgba(255, 255, 255, 0.05);
-      color: #fff;
-    }
-
-    .description {
-      font-size: 0.95rem;
-      color: #bbbbbb;
-      margin-top: 15px;
-      max-width: 320px;
-      line-height: 1.5;
+    .upload-section:hover {
+      background-color: #1b1b1b;
     }
 
     input[type="file"] {
-      display: none;
+      margin-top: 20px;
+      color: white;
+    }
+
+    .description {
+      font-size: 0.95em;
+      color: #ccc;
+      margin-top: 20px;
+    }
+
+    .preview {
+      margin-top: 30px;
+    }
+
+    .preview img {
+      max-width: 100%;
+      border-radius: 10px;
+      border: 2px solid #4e0470;
     }
 
     footer {
-      font-size: 0.9rem;
-      color: #bbbbbb;
-      margin-bottom: 10px;
+      margin-top: auto;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
-  <div class="logo">
-    <div class="ime">IME</div>
-    <div class="fullform">Image Magic Extender</div>
-  </div>
+  <header>
+    <h1>IME</h1>
+    <h2>Image Magic Extender</h2>
+  </header>
 
-  <label class="upload-box" for="imageInput">
-    BROWSE
-    <input type="file" id="imageInput" accept="image/*" />
-  </label>
-
-  <div class="description">
-    Upload an image and let our AI extend the background intelligently while preserving your subject in focus. It’s fast, smart, and magical.
+  <div class="upload-section">
+    <label for="imageInput">📁 Browse your image</label><br/>
+    <input type="file" id="imageInput" accept="image/*"/>
+    <p class="description">
+      Upload an image and let our AI extend the background intelligently while preserving your subject in focus…
+    </p>
+    <div class="preview" id="preview"></div>
   </div>
 
   <footer>
@@ -100,13 +101,17 @@
   </footer>
 
   <script>
-    const input = document.getElementById('imageInput');
-    const box = document.querySelector('.upload-box');
+    const imageInput = document.getElementById('imageInput');
+    const preview = document.getElementById('preview');
 
-    input.addEventListener('change', () => {
-      const file = input.files[0];
+    imageInput.addEventListener('change', function () {
+      const file = this.files[0];
       if (file) {
-        box.innerText = "Image Selected ✔";
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          preview.innerHTML = '<img src="' + e.target.result + '" alt="Image Preview">';
+        };
+        reader.readAsDataURL(file);
       }
     });
   </script>
