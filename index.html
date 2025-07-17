@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IME - Image Magic Extender</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #000000, #4e0470);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 100vh;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .logo {
+      font-style: italic;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .logo .ime {
+      font-size: 3.5rem;
+      color: #a020f0;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .logo .fullform {
+      font-size: 1.2rem;
+      font-style: normal;
+      font-weight: 500;
+      color: #ffffff;
+      margin-top: 10px;
+    }
+
+    .upload-box {
+      margin: 60px auto 10px;
+      border: 3px dashed #a020f0;
+      border-radius: 12px;
+      padding: 80px 60px;
+      width: 300px;
+      background-color: transparent;
+      color: #999;
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: background 0.3s, color 0.3s;
+      cursor: pointer;
+    }
+
+    .upload-box:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: #fff;
+    }
+
+    .description {
+      font-size: 0.95rem;
+      color: #bbbbbb;
+      margin-top: 15px;
+      max-width: 320px;
+      line-height: 1.5;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    footer {
+      font-size: 0.9rem;
+      color: #bbbbbb;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <div class="ime">IME</div>
+    <div class="fullform">Image Magic Extender</div>
+  </div>
+
+  <label class="upload-box" for="imageInput">
+    BROWSE
+    <input type="file" id="imageInput" accept="image/*" />
+  </label>
+
+  <div class="description">
+    Upload an image and let our AI extend the background intelligently while preserving your subject in focus. It’s fast, smart, and magical.
+  </div>
+
+  <footer>
+    Created with ❤️ by Anupam
+  </footer>
+
+  <script>
+    const input = document.getElementById('imageInput');
+    const box = document.querySelector('.upload-box');
+
+    input.addEventListener('change', () => {
+      const file = input.files[0];
+      if (file) {
+        box.innerText = "Image Selected ✔";
+      }
+    });
+  </script>
+</body>
+</html>
